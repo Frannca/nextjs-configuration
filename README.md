@@ -200,7 +200,7 @@ module.exports = {
 2. Adicionar o código abaixo:
 ```
 {
-  "presets": ["nest/babel", "@babel/preset-typescript"]
+  "presets": ["next/babel", "@babel/preset-typescript"]
 }
 ```
 
@@ -215,4 +215,13 @@ Adicionar "test": "jest" no arquivo `package.json` > `"scripts"`
 
 29. Instalar o testing-library
 
-`yarn add @testing-library/react @testing-library/jest-dom --dev`
+1. `yarn add @testing-library/react @testing-library/jest-dom --dev`
+2. Importar testing-library dentro do arquivo `./jest/setup.ts`: `import '@testing-library/jest-dom'`
+
+30. Adicionar watch para o test
+
+Adicionar `"test:watch": "jest --watch"` no arquivo `package.json` > `"scripts"`
+
+31. Adicionar test ao hook
+
+Alterar `"yarn lint --fix"` para `"yarn lint --fix", "yarn test --findRelatedTests --bail"` em `"lint-staged"`
