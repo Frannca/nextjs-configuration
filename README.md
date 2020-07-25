@@ -154,7 +154,7 @@ No `package.json` alterar `"lint": "eslint src"` para `"lint": "eslint src --max
 
 ## 22. Configurar o husky
 
-Adicionar o código abaixo dentro do `package.json`:
+1. Adicionar o código abaixo dentro do `package.json`:
 
 ```
 "husky": {
@@ -164,12 +164,55 @@ Adicionar o código abaixo dentro do `package.json`:
 },
 ```
 
-## 23.
-
-Adicionar o código abaixo dentro do `package.json`:
+2. Adicionar o código abaixo dentro do `package.json`:
 
 ```
 "lint-staged": {
   "src/**/*": ["yarn lint --fix"]
 },
 ```
+
+## 23. Instalar o Jest para testar o código
+
+`yarn add --dev jest @babel/preset-typescript @types/jest`
+
+## 24. Atualizar lint para entender o jest
+
+Adicionar `"jest": true` e `"node": true` no arquivo `.eslintrc.json` dentro de `"env"`
+
+## 25. Criar arquivo de configuração do Jest
+
+1. Criar o arquivo `jest.config.js`
+2. Adicionar o código abaixo:
+```
+module.exports = {
+  testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.ts(x)'],
+  setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts']
+}
+```
+
+## 26. Criar arquivo de configuração do Babel
+
+1. Criar o arquivo `.babelrc`
+2. Adicionar o código abaixo:
+```
+{
+  "presets": ["nest/babel", "@babel/preset-typescript"]
+}
+```
+
+## 27. Criar arquivo setup do Jest
+
+1. Criar pasta `.jest`
+2. Criar arquivo `setup.ts`
+
+## 28. Adicionar comando de test no package.json
+
+Adicionar "test": "jest" no arquivo `package.json` > `"scripts"`
+
+29. Instalar o testing-library
+
+`yarn add @testing-library/react @testing-library/jest-dom --dev`
